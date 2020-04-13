@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>Registraion for New Username
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+</head>
+<body style="background:white;">
+
+<center><h1 style="color:black">Username for Access blog</h1>
+<p>To active your preferred username and to get password and other sensitive information please give the following details (i.e. name, email & username). I will send you a mail containing all details. Please write down your preferable username which to be assign to you. Thank You.
+You will get mail within 12 hours. 
+</p></center>
+
+<form id="form" target="_self" onsubmit="return postToGoogle();" action="" autocomplete="off"> 
+<input id="nameField" name="entry.1259884275" placeholder="Enter your name" type="text" required> 
+<input id="emailField" name="entry.1164330402" placeholder="Enter your email" type="email" required> 
+<input id="usernameField" name="entry.778890882" placeholder="Enter your username" type="text" required>  
+<button id="send" type="submit" class="common_btn">Register Now</button>
+</form>
+
+<h3 id="success-msg" style="text-align: center !important; margin-top:190px !important; display:none; color:black"> Your Request has been posted in my database. Please wait for next 12 hour. If you didn't get any email from my side, contact directly by email id <a href="mailto:ijeet.research@gmail.com?Subject=New%20Username" target="_top">ijeet.research@gmail.com</a></h3>
+
+
+
+
+
+
+
+
+<script>
+function postToGoogle() {
+                var field1 = $("#nameField").val();
+                var field2 = $("#emailField").val();
+                var field3 = $("#usernameField").val();
+                
+ 				
+				if(field1 == ""){
+					alert('Please Fill Your Name');
+					document.getElementById("nameField").focus();
+					return false;
+				}
+				if(field2 == ""){
+					alert('Please Fill Your Email');
+					document.getElementById("emailField").focus();
+					return false;
+				}
+				if(field3 == ""){
+					alert('Please Fill Your Username');
+					document.getElementById("usernameField").focus();
+					return false;
+				}
+
+
+				
+	
+                $.ajax({
+                    url: "https://docs.google.com/forms/d/e/1FAIpQLSc5bjkkFfnSBS9uU47XWDBYQnmqzZNbfbkAg8boDKYOXrVjeg/formResponse?",
+					data: {"entry.1259884275": field1, "entry.1164330402": field2, "entry.778890882": field3},
+                    type: "POST",
+                    dataType: "xml",
+                    success: function(d)
+					{
+					},
+					error: function(x, y, z)
+						{
+
+							$('#success-msg').show();
+							$('#form').hide();
+							
+						}
+                });
+				return false;
+            }
+</script>
+</body>
+</html>
